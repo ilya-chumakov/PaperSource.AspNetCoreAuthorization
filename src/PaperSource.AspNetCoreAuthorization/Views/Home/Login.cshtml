@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model PaperSource.AspNetCoreAuthorization.Models.LoginViewModel
 
 @{
     ViewData["Title"] = "Log in";
@@ -9,7 +9,7 @@
     <div class="col-md-8">
         <section>
             <form asp-controller="Home" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-                <h4>TODO: username/password fields, external login provider buttons</h4>
+                <h4 style="color: green">TODO: username/password fields, external login provider buttons</h4>
                 <hr />
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">

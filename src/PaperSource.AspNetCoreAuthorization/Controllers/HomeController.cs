@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PaperSource.AspNetCoreAuthorization.Models;
 
 namespace PaperSource.AspNetCoreAuthorization.Controllers
 {
@@ -25,15 +26,17 @@ namespace PaperSource.AspNetCoreAuthorization.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Login()
+        public IActionResult Login(string returnUrl = null)
         {
+            ViewData["ReturnUrl"] = returnUrl;
+
             return View();
         }
 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(string returnUrl)
+        public async Task<IActionResult> Login(LoginViewModel vm, string returnUrl = null)
         {
             var claims = new List<Claim>
             {
@@ -57,7 +60,7 @@ namespace PaperSource.AspNetCoreAuthorization.Controllers
 
             _logger.LogInformation(4, "User logged in.");
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToLocal(returnUrl);
         }
 
         [HttpPost]
@@ -71,9 +74,26 @@ namespace PaperSource.AspNetCoreAuthorization.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
         public IActionResult Error()
         {
             return View();
+        }
+
+        private IActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
         }
     }
 }

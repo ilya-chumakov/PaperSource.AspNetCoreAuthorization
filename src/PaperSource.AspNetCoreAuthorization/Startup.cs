@@ -56,7 +56,7 @@ namespace PaperSource.AspNetCoreAuthorization
                 AuthenticationScheme = "MyCookieMiddlewareInstance",
                 CookieName = "MyCookieMiddlewareInstance",
                 LoginPath = new PathString("/Home/Login/"),
-                AccessDeniedPath = new PathString("/Home/Error/"),
+                AccessDeniedPath = new PathString("/Home/AccessDenied/"),
                 AutomaticAuthenticate = true,
                 AutomaticChallenge = true
             });
