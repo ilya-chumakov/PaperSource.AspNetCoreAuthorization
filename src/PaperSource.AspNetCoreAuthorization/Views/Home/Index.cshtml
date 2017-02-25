@@ -1,7 +1,16 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<br/>
 
 <div class="row">
-  
+    <div class="col-sm-2">
+        <h4>Permission: </h4>
+    </div>
+    <div class="col-sm-2 h4">
+        @Html.ActionLink("ExampleV1", "ExampleV1", "Permission")
+    </div>
+    <div class="col-sm-2 h4">
+        @Html.ActionLink("ExampleV2", "ExampleV1", "Permission")
+    </div>
 </div>

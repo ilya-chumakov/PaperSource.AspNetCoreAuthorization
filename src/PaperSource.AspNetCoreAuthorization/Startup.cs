@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using PaperSource.AspNetCoreAuthorization.Services.Permissions;
 
 namespace PaperSource.AspNetCoreAuthorization
 {
@@ -27,6 +30,8 @@ namespace PaperSource.AspNetCoreAuthorization
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddSingleton<IAuthorizationHandler, PermissionHandler>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -34,24 +39,20 @@ namespace PaperSource.AspNetCoreAuthorization
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
-
+            app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
+            app.UseCookieAuthentication(new CookieAuthenticationOptions()
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                AuthenticationScheme = "MyCookieMiddlewareInstance",
+                CookieName = "MyCookieMiddlewareInstance",
+                LoginPath = new PathString("/Home/Login/"),
+                AccessDeniedPath = new PathString("/Home/Error/"),
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true
             });
+
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
