@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using PaperSource.AspNetCoreAuthorization.Models;
 
-namespace AspNetCoreAuthTests.Controllers
+namespace PaperSource.AspNetCoreAuthorization.Services.Resources
 {
     public class ResourceHandlerV1 : AuthorizationHandler<ResourceBasedRequirement, Order>
     {

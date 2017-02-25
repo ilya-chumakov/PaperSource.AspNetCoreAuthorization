@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using PaperSource.AspNetCoreAuthorization.Models;
 
-namespace AspNetCoreAuthTests.Controllers
+namespace PaperSource.AspNetCoreAuthorization.Services.Resources
 {
     public class ResourceHandlerV2 : AuthorizationHandler<OperationAuthorizationRequirement, Order>
     {

@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PaperSource.AspNetCoreAuthorization.Models;
+using PaperSource.AspNetCoreAuthorization.Services.Resources;
 
-namespace AspNetCoreAuthTests.Controllers
+namespace PaperSource.AspNetCoreAuthorization.Controllers
 {
     public class ResourceController : Controller
     {

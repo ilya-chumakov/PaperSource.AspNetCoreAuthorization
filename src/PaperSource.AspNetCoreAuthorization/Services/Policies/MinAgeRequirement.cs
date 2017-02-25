@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 
-namespace AspNetCoreAuthTests.Controllers
+namespace PaperSource.AspNetCoreAuthorization.Services.Policies
 {
     public class MinAgeRequirement : IAuthorizationRequirement
     {

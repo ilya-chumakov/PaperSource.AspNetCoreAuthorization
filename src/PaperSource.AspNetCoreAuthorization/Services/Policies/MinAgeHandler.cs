@@ -1,10 +1,8 @@
 ﻿using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Logging;
 
-namespace AspNetCoreAuthTests.Controllers
+namespace PaperSource.AspNetCoreAuthorization.Services.Policies
 {
     public class MinAgeHandler : AuthorizationHandler<MinAgeRequirement>
     {
