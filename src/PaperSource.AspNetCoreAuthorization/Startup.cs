@@ -34,15 +34,13 @@ namespace PaperSource.AspNetCoreAuthorization
 
             services.AddAuthorization(options =>
             {
-                //options.AddPolicy("ggl", x => { x.RequireClaim(ClaimTypes.Webpage); });
-                //options.AddPolicy("stop", x => { x.RequireClaim(ClaimTypes.DateOfBirth); });
-
-                //options.AddPolicy("handler-allow", x => { x.AddRequirements(new MinAgeRequirement(20)); });
-                //options.AddPolicy("handler-deny", x => { x.AddRequirements(new MinAgeRequirement(42)); });
+                options.AddPolicy("age-adult-policy", x => { x.AddRequirements(new MinAgeRequirement(18)); });
+                options.AddPolicy("age-elder-policy", x => { x.AddRequirements(new MinAgeRequirement(42)); });
 
                 options.AddPolicy("resource-allow-policy", x => { x.AddRequirements(new ResourceBasedRequirement()); });
             });
 
+            services.AddSingleton<IAuthorizationHandler, MinAgeHandler>();
             services.AddSingleton<IAuthorizationHandler, ResourceHandlerV1>();
             services.AddSingleton<IAuthorizationHandler, ResourceHandlerV1>();
             services.AddSingleton<IAuthorizationHandler, PermissionHandler>();

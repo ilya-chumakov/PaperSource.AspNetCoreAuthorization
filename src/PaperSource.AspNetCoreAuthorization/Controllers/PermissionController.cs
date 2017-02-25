@@ -14,7 +14,7 @@ namespace PaperSource.AspNetCoreAuthorization.Controllers
         }
 
         [AuthorizePermission(Permission.Foo, Permission.Bar)]
-        [Authorize(Policy = "handler-allow")]
+        [Authorize(Policy = "age-adult-policy")]
         public IActionResult ExampleV2()
         {
             return View("OK");
