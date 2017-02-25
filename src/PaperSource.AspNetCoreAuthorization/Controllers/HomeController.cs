@@ -39,7 +39,8 @@ namespace PaperSource.AspNetCoreAuthorization.Controllers
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Webpage, "http://goo.gl", ClaimValueTypes.String),
-                new Claim("age", "25", ClaimValueTypes.String),
+                new Claim(ClaimTypes.Name, "Fake User"),
+                new Claim("age", "25", ClaimValueTypes.Integer),
                 new Claim("permission-foo", "grant")
             };
 
