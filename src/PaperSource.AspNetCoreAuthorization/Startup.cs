@@ -39,7 +39,7 @@ namespace PaperSource.AspNetCoreAuthorization
 
             services.AddSingleton<IAuthorizationHandler, MinAgeHandler>();
             services.AddSingleton<IAuthorizationHandler, ResourceHandlerV1>();
-            services.AddSingleton<IAuthorizationHandler, ResourceHandlerV1>();
+            services.AddSingleton<IAuthorizationHandler, ResourceHandlerV2>();
             services.AddSingleton<IAuthorizationHandler, PermissionHandler>();
         }
 

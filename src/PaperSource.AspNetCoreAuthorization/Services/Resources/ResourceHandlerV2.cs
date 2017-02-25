@@ -11,7 +11,7 @@ namespace PaperSource.AspNetCoreAuthorization.Services.Resources
             OperationAuthorizationRequirement requirement,
             Order order)
         {
-            // Validate the requirement against the resource and identity.
+            // TODO: Validate the requirement against the resource and identity.
             if (context.User.Identity.IsAuthenticated) context.Succeed(requirement);
 
             return Task.CompletedTask;
