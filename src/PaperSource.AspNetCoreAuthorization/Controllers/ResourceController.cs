@@ -17,14 +17,14 @@ namespace PaperSource.AspNetCoreAuthorization.Controllers
 
         public async Task<IActionResult> ExampleV1(int id)
         {
-            Order order = new Order(); //получим ресурс из БД
+            Order order = new Order(); //get resourse from DB
 
             if (await _authorizationService.AuthorizeAsync(this.User, order, "resource-allow-policy"))
             {
                 return View("OK");
             }
 
-            return new ChallengeResult(); //вернем 401 или 403 (в зависимости от состояния пользователя)
+            return new ChallengeResult(); //it produces 401 or 403 response (depending on user state)
         }
 
         public async Task<IActionResult> ExampleV2()
@@ -36,7 +36,7 @@ namespace PaperSource.AspNetCoreAuthorization.Controllers
                 return View("OK");
             }
 
-            return new ChallengeResult(); //вернем 401 или 403 (в зависимости от состояния пользователя)
+            return new ChallengeResult();  //it produces 401 or 403 response (depending on user state)
         }
     }
 }
